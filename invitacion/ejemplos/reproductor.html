@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproducir Música</title>
+</head>
+<body>
+    <h1>Mi Reproductor de Música</h1>
+    <button id="playButton">Reproducir</button>
+    <audio id="miAudio">
+        <source src="perfect.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        var miAudio = document.getElementById('miAudio');
+        var playButton = document.getElementById('playButton');
+
+        playButton.addEventListener('click', function() {
+            miAudio.play();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Modal de Prueba</title>
+    <style>
+      /* Estilos para el modal */
+      .modal {
+        display: block; /* El modal se muestra por defecto */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      .modal-content {
+        background-color: white;
+        margin: 20% auto;
+        padding: 20px;
+        width: 50%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        text-align: center;
+        position: relative;
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      /* Estilos para el backdrop del modal de música */
+      .backdrop-modal-musica {
+        /* Agrega aquí los estilos que desees para el backdrop del modal de música */
+        background-color: rgba(255, 0, 0, 0.5); /* Cambia el color de fondo a tu elección */
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="modalMusica"
+      class="modal"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div class="modal-content">
+        <h2>Este es un modal</h2>
+        <button
+          id="close-modal-button"
+          class="close"
+          onclick="closeModal()"
+        >
+          Cerrarlo
+        </button>
+        <button
+          id="play-music-modal"
+          class="btn btn-primary"
+        >
+          Ir a escuchar música
+        </button>
+      </div>
+    </div>
+
+    <div id="hidden-text" style="display: none">
+      <h1>Mi Reproductor de Música</h1>
+      <button id="playButton">Pausar</button>
+      <audio id="miAudio">
+        <source src="perfect.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <script>
+      // Obtener elementos del DOM
+      const modal = document.getElementById("modalMusica");
+      const hiddenText = document.getElementById("hidden-text");
+      const miAudio = document.getElementById("miAudio");
+      const playButton = document.getElementById("playButton");
+
+      // Variable para controlar el estado de reproducción
+      let isPlaying = true;
+
+      // Función para cerrar el modal y mostrar el texto oculto
+      function closeModal() {
+        // Reproducir la música si no se está reproduciendo
+        if (!isPlaying) {
+          playAudio();
+        }
+
+        modal.style.display = "none";
+        hiddenText.style.display = "block";
+      }
+
+      // Función para reproducir/pausar la música y cambiar el texto del botón
+      function toggleAudio() {
+        if (isPlaying) {
+          miAudio.pause();
+          playButton.textContent = "Reproducir";
+        } else {
+          miAudio.play();
+          playButton.textContent = "Pausar";
+        }
+        isPlaying = !isPlaying;
+      }
+
+      // Función para reproducir la música
+      function playAudio() {
+        miAudio.play();
+      }
+
+      // Agregar un evento de clic al botón "Reproducir/Pausar"
+      playButton.addEventListener("click", toggleAudio);
+    </script>
+  </body>
+</html>

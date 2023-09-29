@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="reproducir-button">Reproducir Canción</button>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+      // Variable para almacenar el reproductor de YouTube
+      var player;
+
+      // Función para inicializar el reproductor de YouTube
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player("player-musica-fondo", {
+          height: "10",
+          width: "10",
+          videoId: "EH30RAXnRWs", // El ID del video de YouTube
+          events: {
+            onReady: onPlayerReady,
+          },
+        });
+      }
+
+      // Función que se ejecuta cuando el reproductor de YouTube está listo
+      function onPlayerReady(event) {
+        // Función que se ejecuta cuando se hace clic en el botón
+        document
+          .getElementById("reproducir-button")
+          .addEventListener("click", function () {
+            player.playVideo(); // Reproducir el video
+          });
+      }
+    </script>
+  </body>
+</html>
